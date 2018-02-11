@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+message ReadValue {
+  string from = 1;
+  uint32 key = 2;
+  uint32 level = 3;
+}
+
+
+message ReadFromReplica {
+  string from = 1;
+  uint32 key = 2;
+  string value = 3;
+  uint64 timestamp = 4;
+  uint32 level = 5;
+}
+
+message Put {
+  string from = 1;
+  uint32 key = 2;
+  string value = 3;
+  uint64 timestamp = 4;
+  uint32 level = 5;
+}
+
+message ReturnVal {
+  string from = 1;
+  uint32 key = 2;
+  string value = 3;
+  uint64 timestamp = 4;
+  uint32 level = 5;
+}
+
+message SystemException {
+  string message = 1;
+}
+
+message ReadRepair {
+  string from = 1;
+  uint32 key = 2;
+  string value = 3;
+  uint64 timestamp = 4;
+  uint32 level = 5;
+}
+
+message PutReplicaServer {
+  string from = 1;
+  uint32 key = 2;
+  string value = 3;
+  uint64 timestamp = 4;
+  uint32 level = 5;
+}
+message HintMessage {
+  string from = 1;
+  uint32 key = 2;
+  string value = 3;
+  uint64 timestamp = 4;
+  uint32 level = 5;
+}
+message AckWrite {
+  string from = 1;
+}
+
+message NodeMessage {
+  oneof node_message {
+   ReadValue read_value = 1;
+   ReadFromReplica read_from_replica = 2;
+   Put put = 3;
+   ReturnVal return_Val = 4;
+   ReadRepair read_repair = 5;
+   PutReplicaServer put_replica_server = 6;
+   HintMessage hint_message = 7;
+   AckWrite ack_write = 8;
+   SystemException system_exception = 9;
+  }
+}
